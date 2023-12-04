@@ -6,7 +6,8 @@ We're working to expose a lack of cybersecurity from our IT.
 
 - Rohit Bhupathiraju
 
-- Lavanya Satish
+-UI/UX designer:
+- Lavanya Satish: Lavanyasatish1: [Digital Portfolio](https://www.codermerlin.academy/users/lavanya-satish/Digital%20Portfolio/index.html)
 
 - Project Manager :
 - Kareem Khalifa : KemoLito@github.com: [Digital Portfolio](https://www.codermerlin.academy/users/kareem-khalifa/Digital%20Portfolio/index.html)
