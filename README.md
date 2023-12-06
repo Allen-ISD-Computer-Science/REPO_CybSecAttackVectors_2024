@@ -1,9 +1,9 @@
 # Vision Statement
-We're working to expose a lack of cybersecurity from our IT.
+We're working to expose a lack of cybersecurity from our IT. 
 
 # Roles
 
-- George Winters:
+
 ### Release Manager:
 - George Winters-georgewinters5 [Digital Portfolio](https://www.codermerlin.academy/users/george-winters/Digital%20Portfolio/index.html)
 ### Product Manager:
