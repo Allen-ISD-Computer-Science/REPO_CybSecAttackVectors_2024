@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Mock Position</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="leaflet.css">
+    <script src="leaflet.js"></script>
+    <script src="search.js"></script>
+    <style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+	</style>
+
+    <style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
+</head>
+<body>
+
+<div id="search">
+    <input type="text" id="address_input" name="address_input" placeholder="Search an address: Street, City" style="font-size:16pt;width:80%;">
+</div>
+
+<div id='map'></div>
+
+<script>
+	var map = L.map('map').fitWorld();
+	map.panTo(new L.LatLng(12, 15));
+	map.zoomIn(10);
+    var popup = L.popup();
+    var alreadyRunning = false;
+
+    var searchInput = document.getElementById("address_input");
+        searchInput.addEventListener("keypress", async function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            var coords = await searchAddress(searchInput.value);
+            var lat = coords[0];
+            var long = coords[1];
+
+            var mapEvent = {
+                latlng: L.latLng(lat, long)
+            };
+            setOnMap(lat, long);
+            onMapClick(mapEvent);     
+          }
+        });
+
+
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        minZoom: 1,
+        maxZoom: 19,
+    }).addTo(map);
+
+    var icon = L.icon({
+        iconUrl: 'marker-icon-2x.png',
+        shadowUrl: 'marker-shadow.png',
+
+        iconSize:     [27, 44], // size of the icon
+        shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [14, 48], // point of the icon which will correspond to marker's location
+        shadowAnchor: [17, 68 ],  // the same for the shadow
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+
+
+	function onMapClick(e) {
+		if (typeof marker != 'undefined')
+		    map.removeLayer(marker);
+		marker = L.marker(e.latlng, {icon: icon}).addTo(map);
+        var wrap = e.latlng.wrap().toString();
+        Android.setPosition(wrap);
+	}
+
+    function setOnMap(aLat, aLng) {
+        if (typeof marker != 'undefined')
+		    map.removeLayer(marker);
+		zoom = map.getZoom();
+		map.setView(new L.LatLng(aLat, aLng), zoom);
+	    marker = L.marker([aLat, aLng], {icon: icon}).addTo(map);
+	    alreadyRunning = true;
+	    //alert(alreadyRunning);
+    }
+
+    map.on('contextmenu', onMapClick);
+
+    lat = Android.getLat();
+    lng = Android.getLng();
+
+    if (lat != 0 && lng != 0)
+    {
+        map.setView(new L.LatLng(lat, lng), 12);
+        marker = L.marker([lat, lng], {icon: icon}).addTo(map);
+    }
+
+</script>
+</body>
+</html>
