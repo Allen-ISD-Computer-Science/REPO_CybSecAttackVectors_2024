@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eagle Engagement Spanker</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,12 +60,23 @@
         <h2>Welcome! Join us in the fight against Allen ISD IT.</h2>
         <p>Securely connect and collect your hard earned Eagle Engagement Points, all from the comfort of anywhere around the world.</p>
         <p>Get started today and boost your engagement!</p>
-        <button>Create Account</button>
+        <button id="signUpButton">Sign Up</button>
+        <button id="loginButton">Login</button>
     </section>
 
     <footer>
         <p>George Winters, Kareem Khalifa, Rohit Bhupathiraju, Lavanya Satish, and Mohibullah Meer</p>
     </footer>
+
+    <script>
+        document.getElementById('signUpButton').addEventListener('click', function() {
+            window.location.href = 'signup.html';
+        });
+
+        document.getElementById('loginButton').addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+    </script>
 
 </body>
 </html>
