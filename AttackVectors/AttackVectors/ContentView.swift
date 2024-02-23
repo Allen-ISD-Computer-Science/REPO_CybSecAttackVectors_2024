@@ -6,19 +6,32 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack {
+                ZStack {
+                    Map()
+                    Text("Attack Vectors")
+                        .font(.title)
+                        .bold()
+                        .offset(y: -330)
+                }
+                HStack {
+                    Button("Set Location") {}
+                        .padding(10)
+                    Spacer()
+                    Button("Reset") {}
+                        .padding(10)
+                }
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
